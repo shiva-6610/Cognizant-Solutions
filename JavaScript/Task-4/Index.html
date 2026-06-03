@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Event Management</title>
+</head>
+<body>
+
+    <h1>Community Events</h1>
+
+    <div id="eventList"></div>
+
+    <script>
+
+        // Event Array
+        let events = [
+            {
+                id: 1,
+                name: "Music Festival",
+                category: "Music",
+                seats: 50
+            },
+            {
+                id: 2,
+                name: "Tech Workshop",
+                category: "Technology",
+                seats: 30
+            },
+            {
+                id: 3,
+                name: "Food Carnival",
+                category: "Food",
+                seats: 20
+            }
+        ];
+
+
+        // -----------------------------
+        // addEvent()
+        // -----------------------------
+        function addEvent(id, name, category, seats) {
+
+            let newEvent = {
+                id: id,
+                name: name,
+                category: category,
+                seats: seats
+            };
+
+            events.push(newEvent);
+
+            console.log("Event Added:", newEvent);
+        }
+
+
+        // Add new event
+        addEvent(4, "Dance Show", "Entertainment", 40);
+
+
+
+        // -----------------------------
+        // registerUser()
+        // -----------------------------
+        function registerUser(eventId, userName) {
+
+            let event = events.find(e => e.id === eventId);
+
+            if (event && event.seats > 0) {
+
+                event.seats--;
+
+                console.log(userName + " registered for " + event.name);
+
+            } else {
+
+                console.log("No seats available or event not found");
+            }
+        }
+
+
+        // Register users
+        registerUser(1, "Shivani");
+        registerUser(2, "Rahul");
+
+
+
+        // -----------------------------
+        // filterEventsByCategory()
+        // -----------------------------
+        function filterEventsByCategory(category) {
+
+            return events.filter(event => event.category === category);
+        }
+
+
+        // Display filtered events
+        let musicEvents = filterEventsByCategory("Music");
+
+        console.log("Music Events:", musicEvents);
+
+
+
+        // -----------------------------
+        // Closure Example
+        // Track registrations by category
+        // -----------------------------
+        function registrationTracker(categoryName) {
+
+            let totalRegistrations = 0;
+
+            return function () {
+
+                totalRegistrations++;
+
+                console.log(
+                    "Total registrations for " +
+                    categoryName +
+                    ": " +
+                    totalRegistrations
+                );
+            };
+        }
+
+
+        // Create tracker
+        let musicTracker = registrationTracker("Music");
+
+        // Increase count
+        musicTracker();
+        musicTracker();
+        musicTracker();
+
+
+
+        // -----------------------------
+        // Higher-Order Function
+        // Using callback for dynamic filtering
+        // -----------------------------
+        function searchEvents(callback) {
+
+            return events.filter(callback);
+        }
+
+
+        // Search events with seats > 25
+        let availableEvents = searchEvents(function(event) {
+
+            return event.seats > 25;
+
+        });
+
+        console.log("Available Events:", availableEvents);
+
+
+
+        // -----------------------------
+        // Display Events on Page
+        // -----------------------------
+        let output = "";
+
+        events.forEach(function(event) {
+
+            output += `
+                <div style="border:1px solid gray;
+                            margin:10px;
+                            padding:10px;">
+
+                    <h3>${event.name}</h3>
+
+                    <p>Category: ${event.category}</p>
+
+                    <p>Seats Left: ${event.seats}</p>
+
+                </div>
+            `;
+        });
+
+        document.getElementById("eventList").innerHTML = output;
+
+    </script>
+
+</body>
+</html>

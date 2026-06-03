@@ -1,0 +1,37 @@
+/* 1. Universal Selector - reset default spacing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 2. Element Selector - style all <h2> */
+h2 {
+    color: darkblue;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+/* 3. ID Selector - only one element with id="mainHeader" */
+#mainHeader {
+    background-color: #404d5a;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+/* 4. Class Selector - reusable event cards */
+.eventCard {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+/* 5. Grouping Selector - h3 and p together */
+h3, p {
+    font-family: Arial, sans-serif;
+    color: #333;
+    line-height: 1.5;
+}

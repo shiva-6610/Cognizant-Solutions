@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Problem 5 - Objects & Prototypes</title>
+</head>
+<body>
+
+<h2>Check Console Output</h2>
+
+<script>
+  // 1. Event Constructor
+  function Event(name, category, totalSeats, bookedSeats) {
+    this.name = name;
+    this.category = category;
+    this.totalSeats = totalSeats;
+    this.bookedSeats = bookedSeats;
+  }
+
+  // 2. Prototype method
+  Event.prototype.checkAvailability = function () {
+    return this.totalSeats - this.bookedSeats > 0;
+  };
+
+  // 3. Create objects
+  const event1 = new Event("Tech Talk", "Education", 100, 80);
+  const event2 = new Event("Music Fest", "Entertainment", 50, 50);
+
+  // 4. Test method
+  console.log("Event 1 available?", event1.checkAvailability());
+  console.log("Event 2 available?", event2.checkAvailability());
+
+  // 5. Object.entries()
+  console.log("Event 1 details:");
+  console.log(Object.entries(event1));
+
+  console.log("Event 2 details:");
+  console.log(Object.entries(event2));
+
+</script>
+
+</body>
+</html>

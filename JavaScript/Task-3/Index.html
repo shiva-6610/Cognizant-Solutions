@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Event Registration</title>
+
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        h1{
+            text-align: center;
+            color: darkblue;
+        }
+
+        #eventContainer{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .eventCard{
+            background-color: white;
+            width: 250px;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0px 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .eventCard h2{
+            color: darkgreen;
+        }
+
+        button{
+            background-color: blue;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover{
+            background-color: darkblue;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Upcoming Events</h1>
+
+    <div id="eventContainer"></div>
+
+    <script>
+
+        // Event List
+        const events = [
+
+            {
+                name: "Music Concert",
+                date: "2026-06-10",
+                seats: 20
+            },
+
+            {
+                name: "Tech Seminar",
+                date: "2025-01-15",
+                seats: 15
+            },
+
+            {
+                name: "Art Workshop",
+                date: "2026-07-05",
+                seats: 0
+            },
+
+            {
+                name: "Coding Bootcamp",
+                date: "2026-08-20",
+                seats: 10
+            }
+
+        ];
+
+        const container = document.getElementById("eventContainer");
+
+        const today = new Date();
+
+        // Loop through events using forEach()
+        events.forEach(function(event){
+
+            const eventDate = new Date(event.date);
+
+            // Condition using if-else
+            if(eventDate > today && event.seats > 0){
+
+                const card = document.createElement("div");
+                card.classList.add("eventCard");
+
+                card.innerHTML = `
+                    <h2>${event.name}</h2>
+                    <p><strong>Date:</strong> ${event.date}</p>
+                    <p><strong>Seats:</strong> ${event.seats}</p>
+
+                    <button onclick="register('${event.name}', ${event.seats})">
+                        Register
+                    </button>
+                `;
+
+                container.appendChild(card);
+
+            }
+            else{
+
+                console.log(`${event.name} is hidden`);
+
+            }
+
+        });
+
+        // Registration with try-catch
+        function register(eventName, seats){
+
+            try{
+
+                if(seats <= 0){
+                    throw new Error("No seats available");
+                }
+
+                alert(`Successfully registered for ${eventName}`);
+
+            }
+            catch(error){
+
+                alert("Registration Failed: " + error.message);
+
+            }
+
+        }
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+/* Global font */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #93637b;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header styling */
+header {
+    background: linear-gradient(90deg, #83476e, #2a5298);
+    color: white;
+    text-align: center;
+    padding: 30px;
+}
+
+/* Main heading */
+h1 {
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Tagline */
+.tagline {
+    background: linear-gradient(90deg, #885391, #5c8450);
+    font-style: times new roman, serif;
+    font-size: 16px;
+    opacity: 0.9;
+}
+
+/* Section headings */
+h2 {
+    background: linear-gradient(90deg, #a24a68, #a5a046);
+    font-size: 20px;
+    font-weight: 500;
+    text-transform: capitalize;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+}
+
+/* Intro section */
+.intro {
+    
+    text-align: center;
+    padding: 20px;
+}
+
+/* Description section */
+.description {
+    
+    padding: 20px 40px;
+    text-align: center;
+}
+
+/* Paragraph styling */
+p {
+    
+    font-size: 14px;
+    line-height: 1.5;
+    letter-spacing: 0.3px;
+}

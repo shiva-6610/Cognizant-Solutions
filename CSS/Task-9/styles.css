@@ -1,0 +1,22 @@
+body {
+    font-family: "Times New Roman", serif;
+    margin: 30px;
+    background-color: #605858;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* Multi-column newspaper style */
+.news-article {
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    line-height: 1.5;
+
+    column-count: 2;
+    column-gap: 30px;
+    column-rule: 1px solid gray;
+}

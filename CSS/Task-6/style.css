@@ -1,0 +1,66 @@
+/* =========================
+   NAVIGATION LIST STYLING
+========================= */
+
+/* Remove bullets from nav menu */
+.nav {
+    background-color: #7e9763;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+/* Space between items */
+.nav li {
+    
+    padding: 8px 12px;
+}
+
+/* =========================
+   LINK STYLING (Pseudo-classes)
+========================= */
+
+/* Default link */
+.nav a:link {
+    background-color: #7e9763;
+    color: rgb(62, 2, 26);
+    text-decoration: none;
+}
+
+/* Visited link */
+.nav a:visited {
+    
+    color: rgb(173, 75, 173);
+}
+
+/* Hover effect */
+.nav a:hover {
+    color: rgb(78, 15, 30);
+    background-color: #6b2933;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+/* Active (when clicking) */
+.nav a:active {
+    color: yellow;
+}
+
+/* =========================
+   NORMAL LIST STYLING
+========================= */
+
+.event-list {
+    
+    list-style-type: circle;   /* circle | disc | square | none */
+    list-style-position: inside; /* inside | outside */
+    padding-left: 10px;
+}
+
+.event-list li {
+    
+    margin: 8px 0;
+    padding: 5px;
+}

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Event Registration Form</title>
+  <style>
+    body {
+      font-family: Arial;
+      margin: 40px;
+    }
+
+    .error {
+      color: red;
+      font-size: 14px;
+    }
+
+    .success {
+      color: green;
+      margin-top: 10px;
+    }
+
+    input, select {
+      display: block;
+      margin-bottom: 10px;
+      padding: 8px;
+      width: 250px;
+    }
+  </style>
+</head>
+
+<body>
+
+<h2>Event Registration Form</h2>
+
+<form id="eventForm">
+  
+  <label>Name:</label>
+  <input type="text" id="name">
+  <div id="nameError" class="error"></div>
+
+  <label>Email:</label>
+  <input type="text" id="email">
+  <div id="emailError" class="error"></div>
+
+  <label>Select Event:</label>
+  <select id="event">
+    <option value="">--Choose Event--</option>
+    <option value="Tech Talk">Tech Talk</option>
+    <option value="Music Fest">Music Fest</option>
+    <option value="Workshop">Workshop</option>
+  </select>
+  <div id="eventError" class="error"></div>
+
+  <button type="submit">Register</button>
+</form>
+
+<div id="result" class="success"></div>
+
+<script>
+  const form = document.getElementById("eventForm");
+
+  form.addEventListener("submit", function(event) {
+    event.preventDefault(); // stop page refresh
+
+    // clear previous errors
+    document.getElementById("nameError").innerText = "";
+    document.getElementById("emailError").innerText = "";
+    document.getElementById("eventError").innerText = "";
+    document.getElementById("result").innerText = "";
+
+    // capture values using form.elements
+    const name = form.elements["name"].value.trim();
+    const email = form.elements["email"].value.trim();
+    const eventSelected = form.elements["event"].value;
+
+    let isValid = true;
+
+    // validation
+    if (name === "") {
+      document.getElementById("nameError").innerText = "Name is required";
+      isValid = false;
+    }
+
+    if (email === "") {
+      document.getElementById("emailError").innerText = "Email is required";
+      isValid = false;
+    } else if (!email.includes("@")) {
+      document.getElementById("emailError").innerText = "Enter valid email";
+      isValid = false;
+    }
+
+    if (eventSelected === "") {
+      document.getElementById("eventError").innerText = "Please select an event";
+      isValid = false;
+    }
+
+    // success message
+    if (isValid) {
+      document.getElementById("result").innerText =
+        `Successfully registered ${name} for ${eventSelected}!`;
+      
+      form.reset();
+    }
+  });
+</script>
+
+</body>
+</html>

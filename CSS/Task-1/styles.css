@@ -1,0 +1,18 @@
+/* Body styles (can also be here instead of internal) */
+body {
+  font-family: Arial;
+}
+
+/* Reusable button styles */
+button {
+  padding: 20px;
+  background-color: rgb(68, 108, 68);
+  color: white;
+  border: none;
+}
+
+/* Footer styles (example) */
+footer {
+  text-align: center;
+  margin-top: 20px;
+}

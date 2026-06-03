@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AJAX Fetch Demo</title>
+</head>
+<body>
+
+  <h2>Event Registration</h2>
+
+  <form id="regForm">
+    <input type="text" id="name" placeholder="Enter name" required />
+    <br><br>
+
+    <input type="email" id="email" placeholder="Enter email" required />
+    <br><br>
+
+    <button type="submit">Register</button>
+  </form>
+
+  <p id="message"></p>
+
+  <script>
+    const form = document.getElementById("regForm");
+    const message = document.getElementById("message");
+
+    form.addEventListener("submit", function(event) {
+      event.preventDefault(); // stop page reload
+
+      const userData = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value
+      };
+
+      message.textContent = "Submitting... ⏳";
+
+      // simulate delay like server processing
+      setTimeout(() => {
+
+        fetch("https://jsonplaceholder.typicode.com/posts", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(userData)
+        })
+        .then(response => response.json())
+        .then(data => {
+          message.textContent = "✅ Registration Successful!";
+          console.log("Server Response:", data);
+        })
+        .catch(error => {
+          message.textContent = "❌ Submission Failed!";
+          console.error(error);
+        });
+
+      }, 2000); // 2 second delay
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Async JS Demo - Events</title>
+  <style>
+    body {
+      font-family: Arial;
+      padding: 20px;
+    }
+
+    button {
+      padding: 10px;
+      margin: 5px;
+      cursor: pointer;
+    }
+
+    #spinner {
+      display: none;
+      color: blue;
+      font-weight: bold;
+    }
+
+    .event {
+      background: #f2f2f2;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Community Events</h1>
+
+  <button onclick="fetchWithThen()">Fetch Using .then()</button>
+  <button onclick="fetchWithAsync()">Fetch Using async/await</button>
+
+  <p id="spinner">Loading events... ⏳</p>
+
+  <div id="output"></div>
+
+  <script>
+    // Mock API (simulated)
+    function getMockEvents() {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve([
+            { name: "Tech Talk", category: "Education" },
+            { name: "Music Fest", category: "Entertainment" },
+            { name: "Coding Workshop", category: "Tech" }
+          ]);
+        }, 2000);
+      });
+    }
+
+    // Show spinner
+    function showLoading(show) {
+      document.getElementById("spinner").style.display = show ? "block" : "none";
+    }
+
+    // Show events in DOM
+    function displayEvents(events) {
+      const output = document.getElementById("output");
+      output.innerHTML = "";
+
+      events.forEach(event => {
+        const div = document.createElement("div");
+        div.className = "event";
+        div.innerText = `${event.name} - ${event.category}`;
+        output.appendChild(div);
+      });
+    }
+
+    // -------------------------------
+    // 1. Using .then() and .catch()
+    // -------------------------------
+    function fetchWithThen() {
+      showLoading(true);
+
+      getMockEvents()
+        .then((data) => {
+          displayEvents(data);
+        })
+        .catch((error) => {
+          console.log("Error:", error);
+        })
+        .finally(() => {
+          showLoading(false);
+        });
+    }
+
+    // -------------------------------
+    // 2. Using async / await
+    // -------------------------------
+    async function fetchWithAsync() {
+      try {
+        showLoading(true);
+
+        const data = await getMockEvents();
+        displayEvents(data);
+
+      } catch (error) {
+        console.log("Error:", error);
+
+      } finally {
+        showLoading(false);
+      }
+    }
+  </script>
+
+</body>
+</html>

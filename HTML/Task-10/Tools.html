@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Debug Practice</title>
+  <style>
+    body { font-family: Arial; background: #f0f0f0; }
+    .box { width: 200px; height: 200px; background: coral; margin: 50px; }
+  </style>
+</head>
+<body>
+  <div class="box" id="myBox">Hello!</div>
+  <script>
+    let count = 0;
+    function updateBox() {
+      count++;
+      console.log("Count is now:", count);
+      document.getElementById("myBox").style.background = "skyblue";
+    }
+    updateBox();
+  </script>
+</body>
+</html>

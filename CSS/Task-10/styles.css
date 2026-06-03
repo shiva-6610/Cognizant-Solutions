@@ -1,0 +1,150 @@
+/* Reset */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+body{
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+/* NAVBAR */
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: #0077cc;
+    color: white;
+
+    padding: 2vh 5vw;
+}
+
+/* Logo */
+.logo{
+    font-size: 2vw;
+}
+
+/* Navigation Links */
+.nav-links{
+    display: flex;
+    list-style: none;
+    gap: 2vw;
+}
+
+.nav-links a{
+    text-decoration: none;
+    color: white;
+    font-size: 1.2vw;
+}
+
+/* HERO SECTION */
+.hero{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 5vh 5vw;
+    min-height: 80vh;
+}
+
+/* Hero Text */
+.hero-text{
+    width: 50%;
+}
+
+.hero-text h2{
+    font-size: 3vw;
+    margin-bottom: 2vh;
+}
+
+.hero-text p{
+    font-size: 1.3vw;
+    line-height: 1.8;
+    margin-bottom: 3vh;
+}
+
+/* Button */
+button{
+    padding: 1vh 2vw;
+    border: none;
+    background-color: #0077cc;
+    color: white;
+    font-size: 1vw;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Hero Image */
+.hero-image{
+    width: 45%;
+}
+
+.hero-image img{
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* ========================================= */
+/* MEDIA QUERY FOR MOBILE DEVICES */
+/* ========================================= */
+
+@media screen and (max-width: 768px){
+
+    /* Navbar becomes vertical */
+    .navbar{
+        flex-direction: column;
+        text-align: center;
+    }
+
+    /* Navigation links vertical */
+    .nav-links{
+        flex-direction: column;
+        margin-top: 15px;
+        gap: 10px;
+    }
+
+    /* Hero section stacked */
+    .hero{
+        flex-direction: column;
+        text-align: center;
+    }
+
+    /* Full width on mobile */
+    .hero-text,
+    .hero-image{
+        width: 100%;
+    }
+
+    /* Smaller fonts */
+    .logo{
+        font-size: 28px;
+    }
+
+    .nav-links a{
+        font-size: 18px;
+    }
+
+    .hero-text h2{
+        font-size: 32px;
+    }
+
+    .hero-text p{
+        font-size: 16px;
+    }
+
+    button{
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+
+    /* Smaller image */
+    .hero-image img{
+        margin-top: 20px;
+        width: 90%;
+    }
+}

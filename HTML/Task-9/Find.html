@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Geolocation - Nearby Events</title>
+  <style>
+    body {
+      font-family: Arial;
+      padding: 20px;
+    }
+    button {
+      padding: 10px 15px;
+      cursor: pointer;
+      margin-bottom: 15px;
+    }
+    #output {
+      margin-top: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      width: fit-content;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Event Finder</h2>
+
+  <button onclick="findNearbyEvents()">Find Nearby Events</button>
+
+  <div id="output">Click the button to get your location</div>
+
+  <script>
+    function findNearbyEvents() {
+      const output = document.getElementById("output");
+
+      // Check if geolocation is supported
+      if (!navigator.geolocation) {
+        output.innerHTML = "<span class='error'>Geolocation is not supported by your browser.</span>";
+        return;
+      }
+
+      // Options for high accuracy
+      const options = {
+        enableHighAccuracy: true,
+        timeout: 10000,       // 10 seconds
+        maximumAge: 0         // no cached location
+      };
+
+      output.innerHTML = "Fetching your location...";
+
+      navigator.geolocation.getCurrentPosition(
+        // Success callback
+        (position) => {
+          const lat = position.coords.latitude;
+          const lon = position.coords.longitude;
+
+          output.innerHTML = `
+            <b>Your Location:</b><br>
+            Latitude: ${lat.toFixed(6)}<br>
+            Longitude: ${lon.toFixed(6)}<br><br>
+            (Now you can fetch nearby events using these coordinates)
+          `;
+        },
+
+        // Error callback
+        (error) => {
+          switch (error.code) {
+            case error.PERMISSION_DENIED:
+              output.innerHTML = "<span class='error'>Permission denied. Please allow location access.</span>";
+              break;
+            case error.POSITION_UNAVAILABLE:
+              output.innerHTML = "<span class='error'>Location information unavailable.</span>";
+              break;
+            case error.TIMEOUT:
+              output.innerHTML = "<span class='error'>Request timed out. Try again.</span>";
+              break;
+            default:
+              output.innerHTML = "<span class='error'>An unknown error occurred.</span>";
+          }
+        },
+
+        options
+      );
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Invite with Media Events</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            width: 60%;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px gray;
+        }
+
+        video {
+            width: 80%;
+            border: 4px solid #0077cc;
+            border-radius: 10px;
+        }
+
+        #message {
+            color: green;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        textarea {
+            width: 80%;
+            height: 100px;
+            margin-top: 20px;
+            padding: 10px;
+        }
+    </style>
+
+    <script>
+        let formChanged = false;
+
+        // Video ready event
+        function videoReady() {
+            document.getElementById("message").innerHTML =
+                "Video ready to play!";
+        }
+
+        // Detect unfinished form
+        function markChanged() {
+            formChanged = true;
+        }
+
+        // Warn before leaving page
+        window.onbeforeunload = function () {
+            if (formChanged) {
+                return "You have unfinished changes. Are you sure you want to leave?";
+            }
+        };
+    </script>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Community Event Promo</h1>
+
+        <!-- Video Section -->
+        <video controls oncanplay="videoReady()">
+            <source src="v1.mp4" type="video/mp4">
+        </video>
+
+        <!-- Message -->
+        <p id="message"></p>
+
+        <!-- Simple Form -->
+        <h2>Feedback Form</h2>
+
+        <textarea placeholder="Enter your feedback here..."
+                  oninput="markChanged()"></textarea>
+
+    </div>
+
+</body>
+</html>

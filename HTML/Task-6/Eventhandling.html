@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Feedback Form</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+
+        .container {
+            width: 450px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px gray;
+        }
+
+        h2 {
+            text-align: center;
+            color: darkblue;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+        }
+
+        button {
+            background-color: darkblue;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: navy;
+        }
+
+        #eventImage {
+            width: 200px;
+            height: 130px;
+            display: block;
+            margin: auto;
+            border: 3px solid black;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .bigImage {
+            width: 350px !important;
+            height: 220px !important;
+        }
+
+        #feeDisplay, #charCount, #phoneMsg {
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>Event Feedback Form</h2>
+
+    <!-- Double Click Event -->
+    <img src="feedback.jpg"
+         id="eventImage"
+         ondblclick="enlargeImage()"
+         alt="Event Image">
+
+    <br>
+
+    <!-- Phone Number Validation -->
+    <label>Phone Number:</label>
+    <input type="text" id="phone"
+           onblur="validatePhone()"
+           placeholder="Enter 10 digit number">
+
+    <p id="phoneMsg"></p>
+
+    <!-- Change Event -->
+    <label>Select Event:</label>
+    <select id="eventType" onchange="showFee()">
+        <option value="">--Choose Event--</option>
+        <option value="100">Music Event</option>
+        <option value="200">Dance Event</option>
+        <option value="300">Workshop</option>
+    </select>
+
+    <p id="feeDisplay"></p>
+
+    <!-- Keyboard Events -->
+    <label>Feedback:</label>
+    <textarea id="feedback"
+              rows="5"
+              placeholder="Type your feedback here..."
+              onkeyup="countCharacters()"></textarea>
+
+    <p id="charCount">Characters: 0</p>
+
+    <!-- Click Event -->
+    <button onclick="submitForm()">Submit Feedback</button>
+
+</div>
+
+<script>
+
+    // onblur event for phone validation
+    function validatePhone() {
+        let phone = document.getElementById("phone").value;
+        let msg = document.getElementById("phoneMsg");
+
+        if(phone.length == 10 && !isNaN(phone)) {
+            msg.innerHTML = "Valid Phone Number";
+            msg.style.color = "green";
+        } else {
+            msg.innerHTML = "Invalid Phone Number";
+            msg.style.color = "red";
+        }
+    }
+
+    // onchange event for event fee
+    function showFee() {
+        let fee = document.getElementById("eventType").value;
+        let display = document.getElementById("feeDisplay");
+
+        if(fee != "") {
+            display.innerHTML = "Event Fee: ₹" + fee;
+        } else {
+            display.innerHTML = "";
+        }
+    }
+
+    // onclick event
+    function submitForm() {
+        alert("Feedback Submitted Successfully!");
+    }
+
+    // ondblclick event
+    function enlargeImage() {
+        document.getElementById("eventImage")
+                .classList.toggle("bigImage");
+    }
+
+    // keyboard event
+    function countCharacters() {
+        let text = document.getElementById("feedback").value;
+        document.getElementById("charCount").innerHTML =
+            "Characters: " + text.length;
+    }
+
+</script>
+
+</body>
+</html>

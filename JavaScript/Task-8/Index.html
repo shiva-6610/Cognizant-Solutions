@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Event Handling Demo</title>
+  <style>
+    .event-card {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Community Events</h1>
+
+  <!-- SEARCH BOX -->
+  <input type="text" id="searchBox" placeholder="Search events by name..." />
+
+  <!-- FILTER DROPDOWN -->
+  <select id="categoryFilter">
+    <option value="all">All</option>
+    <option value="music">Music</option>
+    <option value="tech">Tech</option>
+    <option value="workshop">Workshop</option>
+  </select>
+
+  <!-- EVENTS LIST -->
+  <div id="eventList"></div>
+
+  <script>
+    // Sample event data
+    let events = [
+      { name: "Music Fest", category: "music" },
+      { name: "Tech Talk AI", category: "tech" },
+      { name: "Baking Workshop", category: "workshop" },
+      { name: "Rock Concert", category: "music" }
+    ];
+
+    const eventList = document.getElementById("eventList");
+    const categoryFilter = document.getElementById("categoryFilter");
+    const searchBox = document.getElementById("searchBox");
+
+    // Render events
+    function displayEvents(data) {
+      eventList.innerHTML = "";
+
+      data.forEach(event => {
+        const div = document.createElement("div");
+        div.className = "event-card";
+
+        div.innerHTML = `
+          <h3>${event.name}</h3>
+          <p>Category: ${event.category}</p>
+          <button onclick="registerEvent('${event.name}')">Register</button>
+        `;
+
+        eventList.appendChild(div);
+      });
+    }
+
+    // REGISTER BUTTON (onclick)
+    function registerEvent(name) {
+      alert("You registered for: " + name);
+    }
+
+    // FILTER (onchange)
+    categoryFilter.onchange = function () {
+      applyFilters();
+    };
+
+    // SEARCH (keydown)
+    searchBox.addEventListener("keydown", function () {
+      setTimeout(applyFilters, 100); // small delay so value updates
+    });
+
+    function applyFilters() {
+      let filtered = events;
+
+      // filter by category
+      const category = categoryFilter.value;
+      if (category !== "all") {
+        filtered = filtered.filter(e => e.category === category);
+      }
+
+      // filter by search text
+      const search = searchBox.value.toLowerCase();
+      if (search !== "") {
+        filtered = filtered.filter(e =>
+          e.name.toLowerCase().includes(search)
+        );
+      }
+
+      displayEvents(filtered);
+    }
+
+    // initial load
+    displayEvents(events);
+  </script>
+
+</body>
+</html>

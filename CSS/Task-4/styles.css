@@ -1,0 +1,40 @@
+/* 🌄 Body Background with fallback */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+
+    background-color: #95afc9; /* fallback color */
+    background-image: url("city.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* 🏙️ Main Title */
+h1 {
+    color: #2c3e50; /* HEX color */
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(68, 129, 167, 0.7); /* RGBA */
+}
+
+/* 🎨 Section Styling */
+section {
+    margin: 20px;
+    padding: 15px;
+    background-color: rgba(151, 91, 91, 0.85); /* RGBA for readability */
+    border-radius: 8px;
+}
+
+/* 🌈 Gradient Headers */
+h2 {
+    background: linear-gradient(to right, #7dbda2, #074f60);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* ✏️ Paragraph text */
+p {
+    color: rgba(0, 0, 0, 0.75);
+}
